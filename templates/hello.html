@@ -1,0 +1,57 @@
+<!doctype html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+
+        <div class="container">
+
+        <hr>
+        <h1>Search for certificates</h1>
+        <hr>
+
+
+        <div>
+            <label for="myName">Search by name:</label>
+            <input id="myName" name="name" value="">
+            <button id="myButton" type="button">Search</button>
+        </div>
+
+            {% block javascript %}
+            <script type="text/javascript">
+                document.getElementById("myButton").onclick =function() {
+                    var name = document.getElementById("myName").value
+                    location.href = "/find_by_name/" + name;
+                };
+            </script>
+                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            {% endblock %}
+
+        </div>
+
+        <div class="container">
+            <hr>
+                <h1>List of certificates</h1>
+            <hr>
+
+            <div class="row" id="certificates">
+        {% for name in name_data %}
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{name.last_name}}</h5>
+                            <h5 class="card-title">{{name.first_name}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{name.url}}</h6>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+            </div>
+        </div>
