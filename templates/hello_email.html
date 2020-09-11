@@ -51,13 +51,13 @@
             <hr>
 
             <div class="row" id="certificates">
-        {% for name in name_data %}
+        {% for email in email_data %}
                 <div class="col-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{{name.last_name}}</h5>
-                            <h5 class="card-title">{{name.first_name}}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{name.url}}</h6>
+                            <h5 class="card-title">{{email.last_name}}</h5>
+                            <h5 class="card-title">{{email.first_name}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{email.url}}</h6>
                             <hr>
                         </div>
                     </div>

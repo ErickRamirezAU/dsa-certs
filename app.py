@@ -102,7 +102,9 @@ stargate_client = Client(BASE_URL, TOKEN, HEADERS)
 # keyspace, doc root etc
 KEYSPACE = "stargate"
 TABLE = "users_by_last_name"
+TABLE_EMAIL = "certificates_by_email"
 DOC_ROOT_PATH = f"/api/rest/v2/keyspaces/{KEYSPACE}/{TABLE}/"
+DOC_ROOT_PATH_EMAIL = f"/api/rest/v2/keyspaces/{KEYSPACE}/{TABLE_EMAIL}/"
 
 
 
@@ -135,6 +137,19 @@ def get_certificates(name):
     if data["count"] == 0:
         return ("no data for this name")
     return redirect(url_for('hello', name=name))
+
+
+@app.route('/find_by_email/<email>')
+def get_certificates_by_email(email):
+    response = stargate_client.get(
+        {}, DOC_ROOT_PATH_EMAIL + email
+    )
+    data = json.loads(response.text)
+    if len(data) == 0:
+        abort(404)
+    if data["count"] == 0:
+        return ("no data for this name")
+    return render_template('hello_email.html', email_data=data["data"])
 
 
 
