@@ -106,7 +106,10 @@ TABLE_EMAIL = "certificates_by_email"
 DOC_ROOT_PATH = f"/api/rest/v2/keyspaces/{KEYSPACE}/{TABLE}/"
 DOC_ROOT_PATH_EMAIL = f"/api/rest/v2/keyspaces/{KEYSPACE}/{TABLE_EMAIL}/"
 
-
+@app.route('/')
+def default():
+    name = "welcome"
+    return redirect(url_for('hello', name=name))
 
 @app.route('/hello/', methods=["GET"])
 def welcome():
