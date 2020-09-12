@@ -68,7 +68,7 @@ Navigate to http://localhost:5000/hello (or http://host_ip:5000/hello). Search f
 
 ## TODO
 
-Add search forms for search by email and first name
+Add a search form for search by first name
 
 build docker file and test container
 
