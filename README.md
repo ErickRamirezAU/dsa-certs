@@ -3,6 +3,15 @@ In July 2020, the [**DataStax Academy**](https://academy.datastax.com) site migr
 
 This app is a proof-of-concept attempt at providing a mechanism for certified users to be able to download a copy of their certificates.
 
+## App screenshots
+Certificate lookup by email:
+
+![dsa-certs-by-email.png](dsa-certs-by-email.png)
+
+Certificate lookup by last name:
+
+![dsa-certs-by-last_name.png](dsa-certs-by-last_name.png)
+
 ## Getting started
 
 This is for Python 3.6 and newer. We recommend running this in a virtual python environment.
