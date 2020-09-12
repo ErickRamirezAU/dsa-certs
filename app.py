@@ -68,6 +68,7 @@ USER = os.environ["ASTRA_DB_USERNAME"]     # NEVER store your creds directly in 
 PASSWORD = os.environ["ASTRA_DB_PASSWORD"] # NEVER store your creds directly in your code!
 DB_ID = os.environ["ASTRA_DB_ID"]          # NEVER store your creds directly in your code!
 REGION = os.environ["ASTRA_DB_REGION"]     # NEVER store your creds directly in your code!
+KEYSPACE = os.environ["ASTRA_DB_KEYSPACE"]
 BASE_URL = f"https://{DB_ID}-{REGION}.apps.astra.datastax.com"
 
 def authenticate(path="/api/rest/v1/auth"):
@@ -153,6 +154,9 @@ def get_certificates_by_email(email):
     if data["count"] == 0:
         return ("no data for this name")
     return render_template('hello_email.html', email_data=data["data"])
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
 
 
