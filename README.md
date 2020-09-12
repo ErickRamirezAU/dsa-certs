@@ -5,38 +5,66 @@ This app is a proof-of-concept attempt at providing a mechanism for certified us
 
 ## Getting started
 
-This is for Python 3.6 and newer.
+This is for Python 3.6 and newer. We recommend running this in a virtual python environment.
 
-Recommend to run this in a virtual python environment.
-
-Install dependencies:
+**Step 1** - Install dependencies:
 
 ```
 pip install flask
 pip install requests
 ```
 
-Set the following environment variables
+In bare Ubuntu builds, manually install the Flask package:
+
+```
+sudo apt-get update
+sudo apt install python3-flask
+```
+
+**Step 2** - Set the following environment variables on your machine:
 
 ```
 export FLASK_APP=app.py
-export ASTRA_DB_USERNAME=
-export ASTRA_DB_PASSWORD=
-export ASTRA_DB_ID=
-export ASTRA_DB_REGION=
+export ASTRA_DB_USERNAME=your_db_user
+export ASTRA_DB_PASSWORD=your_db_password
+export ASTRA_DB_ID=your_cluster_id
+export ASTRA_DB_REGION=your_cluster_region
+export ASTRA_DB_KEYSPACE=your_keyspace_name
 ```
+
+**Step 3** - Either clone the repo on your machine or download the latest release and unpack it.
+
+**Step 4** - Logon to your Astra DB and create the schema using `schema.cql`.
+
+**Step 5** - Since this is a lookup app, bulk load data into the tables using the sample data with DSBulk.
 
 ## Running the app
 
-To run:
+**Option 1** - To run locally:
 
 ```
+cd path/to/dsa-certs
 flask run
 ```
 
-Navigate to `localhost:5000/hello`
+**Option 2** - To run on a server, specify the public IP to bind to:
 
-Search by last name for certificates.
+```
+cd path/to/dsa-certs
+flask run --host <public_ip>
+```
+
+Here is an example output:
+
+```
+075ded31-06aa-4ba6-a73e-9c59b26e6970
+ * Serving Flask app "app"
+ * Running on http://10.101.33.144:5000/ (Press CTRL+C to quit)
+```
+
+The first line is the Astra auth token which indicates that auth is successful. Note that the token has a 30-minute lifetime from last use so if the app hasn't been used in a while, the token will expire and will require a restart.
+
+Navigate to http://localhost:5000/hello (or http://host_ip:5000/hello). Search for certificates by last name or email address (based on the sample data).
 
 ## TODO
 
@@ -47,7 +75,6 @@ build docker file and test container
 ## Acknowledgements
 
 Thanks Erick for all the ground work, and thanks Denise for the Python example which was very helpful.
-
 
 ## Authors
 [Bettina Swynnerton](https://github.com/bettinaswynnerton) and [Erick Ramirez](https://github.com/flightc).
