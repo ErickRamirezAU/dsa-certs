@@ -75,11 +75,17 @@ The first line is the Astra auth token which indicates that auth is successful. 
 
 Navigate to http://localhost:5000/hello (or http://host_ip:5000/hello). Search for certificates by last name or email address (based on the sample data).
 
+## Build and run docker image
+
+```
+docker build ./dsa-certs -t dsa-certs
+
+docker run -e FLASK_APP=app.py -e ASTRA_DB_USERNAME=<your_username> -e ASTRA_DB_PASSWORD=<your_password> -e ASTRA_DB_KEYSPACE=<your_keyspace> -e ASTRA_DB_ID=<your_id> -e ASTRA_DB_REGION=<your_region> -p 5000:5000 dsa-certs
+```
+
 ## TODO
 
 Add a search form for search by first name
-
-build docker file and test container
 
 ## Acknowledgements
 
